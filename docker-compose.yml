@@ -30,6 +30,8 @@ services:
       - postgres
     networks:
       - microservice-net
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
 
   # ---------------- MongoDB ----------------
   mongodb:
@@ -83,3 +85,4 @@ networks:
 volumes:
   postgres_data:
   mongo_data:
+  pgadmin_data:
