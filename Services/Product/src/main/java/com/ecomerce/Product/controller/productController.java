@@ -49,6 +49,6 @@ public class productController {
     public ResponseEntity<List<ProductResponse>> getAllCategoryBasedProducts(
             @PathVariable("catId") Integer catId
     ){
-        return ResponseEntity.ok(productService.fetchCategoryBasedProducts());
+        return ResponseEntity.ok(productService.fetchCategoryBasedProducts(catId));
     }
 }

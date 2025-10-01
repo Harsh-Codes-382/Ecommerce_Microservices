@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 @Builder
 @Entity
 public class Product {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -20,7 +19,7 @@ public class Product {
     private String description;
     private double availableQuantity;
     private BigDecimal price;
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "cat_id")
     private Category category;
 }

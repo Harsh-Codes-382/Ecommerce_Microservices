@@ -1,7 +1,9 @@
 package com.ecomerce.Product.mapper;
 
+import com.ecomerce.Product.dto.ProductPurchaseResponse;
 import com.ecomerce.Product.dto.ProductRequest;
 import com.ecomerce.Product.dto.ProductResponse;
+import com.ecomerce.Product.dto.productQuantityDTO;
 import com.ecomerce.Product.entity.Category;
 import com.ecomerce.Product.entity.Product;
 import org.springframework.stereotype.Service;
@@ -42,6 +44,29 @@ public class productMapper {
                 product.getAvailableQuantity(),
                 product.getPrice(),
                 category
+        );
+    }
+
+    public ProductResponse fromProductResponse(productQuantityDTO product) {
+
+        return new ProductResponse(
+                product.id(),
+                product.name(),
+                product.description(),
+                product.availableQuantity(),
+                product.price(),
+                null
+        );
+    }
+
+
+    public ProductPurchaseResponse toproductPurchaseResponse(productQuantityDTO product, double quantity) {
+        return new ProductPurchaseResponse(
+                product.id(),
+                product.name(),
+                product.description(),
+                product.price(),
+                quantity
         );
     }
 }
