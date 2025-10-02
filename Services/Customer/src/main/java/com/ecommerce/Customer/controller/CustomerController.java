@@ -1,8 +1,7 @@
 package com.ecommerce.Customer.controller;
 
-import com.ecommerce.Customer.DTO.CreateCustomerRequest;
-import com.ecommerce.Customer.DTO.customerResponse;
-import com.ecommerce.Customer.model.Customer;
+import com.ecommerce.Customer.dto.CreateCustomerRequest;
+import com.ecommerce.Customer.dto.customerResponse;
 import com.ecommerce.Customer.service.CustomerService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

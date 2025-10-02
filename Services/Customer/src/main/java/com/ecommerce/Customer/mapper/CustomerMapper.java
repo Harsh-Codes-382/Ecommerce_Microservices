@@ -1,9 +1,8 @@
 package com.ecommerce.Customer.mapper;
 
-import com.ecommerce.Customer.DTO.CreateCustomerRequest;
-import com.ecommerce.Customer.DTO.customerResponse;
+import com.ecommerce.Customer.dto.CreateCustomerRequest;
+import com.ecommerce.Customer.dto.customerResponse;
 import com.ecommerce.Customer.model.Customer;
-import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 @Service

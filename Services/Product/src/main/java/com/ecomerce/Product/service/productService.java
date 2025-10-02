@@ -1,8 +1,8 @@
 package com.ecomerce.Product.service;
 
 
-import com.ecomerce.Product.dto.*;
-import com.ecomerce.Product.entity.Product;
+import com.ecomerce.Product.model.dto.*;
+import com.ecomerce.Product.model.entity.Product;
 import com.ecomerce.Product.exception.ProductPurchaseException;
 import com.ecomerce.Product.mapper.productMapper;
 import com.ecomerce.Product.repository.productRepo;

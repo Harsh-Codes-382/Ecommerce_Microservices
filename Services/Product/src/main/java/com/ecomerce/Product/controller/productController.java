@@ -1,9 +1,9 @@
 package com.ecomerce.Product.controller;
 
-import com.ecomerce.Product.dto.ProductPurchaseRequest;
-import com.ecomerce.Product.dto.ProductPurchaseResponse;
-import com.ecomerce.Product.dto.ProductResponse;
-import com.ecomerce.Product.dto.ProductRequest;
+import com.ecomerce.Product.model.dto.ProductPurchaseRequest;
+import com.ecomerce.Product.model.dto.ProductPurchaseResponse;
+import com.ecomerce.Product.model.dto.ProductResponse;
+import com.ecomerce.Product.model.dto.ProductRequest;
 import com.ecomerce.Product.service.productService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

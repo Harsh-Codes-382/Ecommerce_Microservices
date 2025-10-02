@@ -1,11 +1,11 @@
 package com.ecomerce.Product.mapper;
 
-import com.ecomerce.Product.dto.ProductPurchaseResponse;
-import com.ecomerce.Product.dto.ProductRequest;
-import com.ecomerce.Product.dto.ProductResponse;
-import com.ecomerce.Product.dto.productQuantityDTO;
-import com.ecomerce.Product.entity.Category;
-import com.ecomerce.Product.entity.Product;
+import com.ecomerce.Product.model.dto.ProductPurchaseResponse;
+import com.ecomerce.Product.model.dto.ProductRequest;
+import com.ecomerce.Product.model.dto.ProductResponse;
+import com.ecomerce.Product.model.dto.productQuantityDTO;
+import com.ecomerce.Product.model.entity.Category;
+import com.ecomerce.Product.model.entity.Product;
 import org.springframework.stereotype.Service;
 
 @Service

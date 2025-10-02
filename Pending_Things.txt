@@ -1,0 +1,6 @@
+1. AUTH Service for authentication & authorization
+2. Vault to maintain sensitive info in application.yml
+3. Client Load Balancer for communication between 2 microservices.
+4. Resilience4j for fault tolerance`
+5. Spring Actuator for changing the configs and all
+6. ErrorDecoder for feignClient to handle the errors b/w microservices

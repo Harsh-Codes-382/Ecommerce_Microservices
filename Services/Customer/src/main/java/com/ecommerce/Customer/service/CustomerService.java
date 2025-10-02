@@ -1,17 +1,14 @@
 package com.ecommerce.Customer.service;
 
-import com.ecommerce.Customer.DTO.CreateCustomerRequest;
-import com.ecommerce.Customer.DTO.customerResponse;
+import com.ecommerce.Customer.dto.CreateCustomerRequest;
+import com.ecommerce.Customer.dto.customerResponse;
 import com.ecommerce.Customer.Exception.CustomerNotFoundException;
 import com.ecommerce.Customer.mapper.CustomerMapper;
 import com.ecommerce.Customer.model.Customer;
 import com.ecommerce.Customer.repository.CustomerRepo;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;

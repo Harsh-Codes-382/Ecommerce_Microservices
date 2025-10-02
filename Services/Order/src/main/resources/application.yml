@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: order-service
+  config:
+    import: optional:configserver:http://localhost:8888
+
+
+application:
+  config:
+    customer-url: http://localhost:5000/api/v1/customer # API Gateway URL -> Customer Service
+    product-url: http://localhost:5000/api/v1/product  # API Gateway URL -> Product Service
+    payment-url: http://localhost:5000/api/v1/payment  # API Gateway URL -> Payment Service
