@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Order-service
+    name: order-service
   config:
     import: optional:configserver:http://localhost:8888
 
