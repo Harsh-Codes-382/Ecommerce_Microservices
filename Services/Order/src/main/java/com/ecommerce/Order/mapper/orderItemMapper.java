@@ -1,8 +1,9 @@
 package com.ecommerce.Order.mapper;
 
+import com.ecommerce.Order.model.dto.OrderItemResponse;
 import com.ecommerce.Order.model.dto.orderItemRequest;
 import com.ecommerce.Order.model.entity.OrderItem;
-import com.ecommerce.Order.model.entity.order;
+import com.ecommerce.Order.model.entity.Order;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,10 +14,17 @@ public class orderItemMapper {
                 .productId(ord.productId())
                 .quantity(ord.quantity())
                 .order(
-                        order.builder()
+                        Order.builder()
                                 .id(ord.orderId())
                                 .build()
                 )
                 .build();
+    }
+
+    public OrderItemResponse fromOrderItemToOrderItemResponse(OrderItem item){
+        return new OrderItemResponse(
+                item.getId(),
+                item.getQuantity()
+        );
     }
 }

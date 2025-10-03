@@ -1,8 +1,10 @@
 package com.ecommerce.Order.repository;
 
-import com.ecommerce.Order.model.entity.order;
+import com.ecommerce.Order.model.entity.Order;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface orderRepo extends JpaRepository<order, Integer> {
+import java.util.List;
 
+public interface orderRepo extends JpaRepository<Order, Integer> {
+    List<Order> findAllByCustomerId(String customerId);
 }

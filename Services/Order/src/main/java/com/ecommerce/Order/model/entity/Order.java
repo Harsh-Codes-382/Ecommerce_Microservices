@@ -20,7 +20,7 @@ import static jakarta.persistence.EnumType.STRING;
 @Entity
 @EntityListeners(AuditingEntityListener.class)  // This will invoke @createDate, @LastModifiedDate before persist
 @Table(name = "customer_orders")
-public class order {
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
