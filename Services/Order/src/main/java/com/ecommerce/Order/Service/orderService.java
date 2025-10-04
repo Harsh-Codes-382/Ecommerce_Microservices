@@ -1,6 +1,7 @@
 package com.ecommerce.Order.Service;
 
 import com.ecommerce.Order.client.CustomerClient;
+import com.ecommerce.Order.client.PaymentClient;
 import com.ecommerce.Order.client.ProductClient;
 import com.ecommerce.Order.exception.BusinessException;
 import com.ecommerce.Order.kafka.OrderConfirmationParams;
@@ -28,6 +29,7 @@ public class orderService {
 
     private final CustomerClient customerClient;
     private final ProductClient productClient;
+    private  final PaymentClient paymentClient;
     private final orderRepo orderRepo;
     private final orderMapper orderMapper;
     private final OrderProducer orderProducer;
@@ -66,6 +68,17 @@ public class orderService {
         Order savedOrder = orderRepo.save(Order);
 
         // Start Payment Process -> call Payment Microservice
+
+        PaymentRequest paymentRequest = new PaymentRequest(
+                savedOrder.getTotalAmount(),
+                savedOrder.getPaymentMethod(),
+                savedOrder.getId(),
+                savedOrder.getReference(),
+                customerResponse
+        );
+
+        Integer paymentId = paymentClient.RequestOrder_Payment(paymentRequest);
+
 
         // Send the Notification using (Kafka message broker) -> Notification Microservice
         orderProducer.orderConfirmationSent(
