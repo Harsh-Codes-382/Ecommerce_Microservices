@@ -1,2 +1,38 @@
 server:
   port: 8094
+
+spring:
+  data:
+    mongodb:
+      username: admin
+      password: admin123
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup,orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        # So, our consumer know what kind of object is coming after serializing
+        spring.json.type.mapping: OrderConfirmation:com.ecommerce.Notification.model.dto.Order_DTO.OrderConfirmation,PaymentConfirmation:com.ecommerce.Notification.model.dto.Payment_DTO.PaymentConfirmation
+  mail:
+    host: localhost
+    port: 1025
+    username: harsh
+    password: testing
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000

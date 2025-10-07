@@ -18,7 +18,7 @@ public class Notification {
     private final KafkaTemplate<String, PaymentNotificationRequest> kafkaTemplate;
 
     public void SendNotification(PaymentNotificationRequest req){
-        log.info("Payment Notification is processing body Sent = < { } >", req);
+        log.info("Payment Notification is processing body Sent = {}", req);
         Message<PaymentNotificationRequest> message = MessageBuilder
                 .withPayload(req)
                 .setHeader(TOPIC, "order-payment-confirm-topic")

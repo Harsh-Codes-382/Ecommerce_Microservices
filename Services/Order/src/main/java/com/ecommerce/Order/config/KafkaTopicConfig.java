@@ -10,7 +10,7 @@ public class KafkaTopicConfig {
     @Bean
     public NewTopic orderTopic(){
         return TopicBuilder
-                .name("Order-confirm")
+                .name("Order-confirm-topic")
                 .build();
     }
 }

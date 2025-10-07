@@ -3,3 +3,38 @@ spring:
     name: notification-service
   config:
     import: optional:configserver:http://localhost:8888
+  data:
+    mongodb:
+      username: root
+      password: root123
+      host: localhost
+      port: 27017
+      database: customer
+      authentication-database: admin
+  kafka:
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: paymentGroup,orderGroup
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        # So, our consumer know what kind of object is coming after serializing
+        spring.json.type.mapping: OrderConfirmationParams:com.ecommerce.Order.kafka.OrderConfirmationParams,paymentConfirmation:com.ecommerce.Payment.Kafka.PaymentNotificationRequest
+
+  mail:
+    host: localhost
+    port: 1025
+    username: harsh
+    password: testing
+    properties:
+      mail:
+        smtp:
+          trust: "*"
+        auth: true
+        starttls:
+          enabled: true
+        connectiontimeout: 5000
+        timeout: 3000
+        writetimeout: 5000

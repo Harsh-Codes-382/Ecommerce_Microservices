@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Confirmation</title>
+    <style>
+        body {
+          font-family: "Helvetica Neue", Arial, sans-serif;
+          background-color: #f4f4f7;
+          margin: 0;
+          padding: 0;
+          color: #333;
+        }
+
+        .email-container {
+          max-width: 600px;
+          margin: 40px auto;
+          background-color: #ffffff;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          overflow: hidden;
+        }
+
+        .header {
+          background-color: #10b981; /* Tailwind's emerald-500 */
+          color: white;
+          text-align: center;
+          padding: 24px;
+        }
+
+        .header h1 {
+          margin: 0;
+          font-size: 24px;
+          letter-spacing: 0.5px;
+        }
+
+        .content {
+          padding: 32px;
+          text-align: left;
+        }
+
+        .content h2 {
+          font-size: 20px;
+          color: #111827;
+          margin-bottom: 16px;
+        }
+
+        .content p {
+          font-size: 16px;
+          line-height: 1.6;
+          color: #374151;
+          margin: 8px 0;
+        }
+
+        .info-box {
+          background-color: #f9fafb;
+          border: 1px solid #e5e7eb;
+          border-radius: 8px;
+          padding: 16px 20px;
+          margin: 20px 0;
+        }
+
+        .info-item {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 8px;
+          font-size: 16px;
+        }
+
+        .info-item span:first-child {
+          font-weight: 600;
+          color: #111827;
+        }
+
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+          font-size: 15px;
+        }
+
+        th, td {
+          padding: 12px 10px;
+          border-bottom: 1px solid #e5e7eb;
+          text-align: left;
+        }
+
+        th {
+          background-color: #f3f4f6;
+          font-weight: 600;
+          color: #111827;
+        }
+
+        tr:last-child td {
+          border-bottom: none;
+        }
+
+        .total-row td {
+          font-weight: 600;
+          font-size: 16px;
+          border-top: 2px solid #d1d5db;
+        }
+
+        .footer {
+          background-color: #f9fafb;
+          text-align: center;
+          padding: 16px;
+          font-size: 14px;
+          color: #6b7280;
+        }
+
+        .btn {
+          display: inline-block;
+          background-color: #10b981;
+          color: white !important;
+          padding: 12px 24px;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 500;
+          margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+          .content {
+            padding: 20px;
+          }
+          .header h1 {
+            font-size: 20px;
+          }
+          th, td {
+            font-size: 14px;
+          }
+        }
+    </style>
+</head>
+<body>
+<div class="email-container">
+    <div class="header">
+        <h1>Order Confirmation</h1>
+    </div>
+
+    <div class="content">
+        <h2>Hi <span th:text="${customerName}">Customer</span>,</h2>
+
+        <p>Thank you for your order! We’re excited to let you know that your order has been successfully placed.</p>
+
+        <div class="info-box">
+            <div class="info-item">
+                <span>Order Reference:</span>
+                <span th:text="${orderReference}">#12345</span>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Loop through products -->
+            <tr th:each="product : ${products}">
+                <td th:text="${product.name}">Product Name</td>
+                <td th:text="${product.quantity}">1</td>
+                <td th:text="${product.price}">₹100.00</td>
+            </tr>
+
+            <!-- Total -->
+            <tr class="total-row">
+                <td colspan="2">Total Amount:</td>
+                <td th:text="${amount}">₹300.00</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <p>Your order is now being processed. We’ll send you another update once it ships.</p>
+
+        <a th:href="@{https://yourstore.com/orders/{ref}(ref=${orderReference})}" class="btn">
+            View Your Order
+        </a>
+    </div>
+
+    <div class="footer">
+        <p>© 2025 YourCompany Inc. All rights reserved.</p>
+        <p>This email was sent automatically — please do not reply.</p>
+    </div>
+</div>
+</body>
+</html>
