@@ -27,4 +27,4 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
         # So, our consumer know what kind of object is coming after serializing
-        spring.json.type.mapping: OrderConfirmationParams:com.ecommerce.Order.kafka.OrderConfirmationParams
+        spring.json.type.mapping: OrderConfirmation:com.ecommerce.Order.kafka.OrderConfirmationParams

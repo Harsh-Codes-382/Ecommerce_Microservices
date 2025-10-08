@@ -14,6 +14,7 @@ import com.ecommerce.Order.repository.orderRepo;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +26,7 @@ import static java.lang.String.format;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class orderService {
 
     private final CustomerClient customerClient;
@@ -38,11 +40,15 @@ public class orderService {
     public Integer createOrder(@Valid OrderRequest req) {
 
         //  Check the customer -> call Customer Microservice
+        log.info("Calling Customer service...");
         CustomerResponse customerResponse =   customerClient.findCustomerById(req.customerId())
                 .orElseThrow(() -> new BusinessException(format("Customer Not found SO, no Order can created for id: %s", req.customerId())));
+        log.info("Received Customer response: {}", customerResponse);
 
         // Check the Product & Update its inventory -> call Product Microservice
+        log.info("Calling Products service...");
         List<ProductPurchaseResponse> products = productClient.fetchProducts(req.products());
+        log.info("Received Products Service response: {}", products);
 
         BigDecimal total = products.stream()
                 .map(ProductPurchaseResponse::price)
@@ -52,6 +58,7 @@ public class orderService {
         // Create the Order & its Items
         Order Order = orderMapper.toOrder(req, total);
 
+        log.info("Creating Order Items");
         List<OrderItem> orderItems = products.stream()
                 .map(prod ->
                        new OrderItem(
@@ -63,6 +70,7 @@ public class orderService {
                 )
                 .toList();
         // Since orderItems are cascade ALL to Orders so they will persist with Order
+        log.info("Persisting Order");
         Order.setOrderItems(orderItems);
 
         Order savedOrder = orderRepo.save(Order);
@@ -77,10 +85,13 @@ public class orderService {
                 customerResponse
         );
 
+        log.info("Calling Payment Service");
         Integer paymentId = paymentClient.RequestOrder_Payment(paymentRequest);
+        log.info("Got Payment Service Response {}", paymentId);
 
 
         // Send the Notification using (Kafka message broker) -> Notification Microservice
+        log.info("Order Confirm sent to Kafka");
         orderProducer.orderConfirmationSent(
                 new OrderConfirmationParams(
                         savedOrder.getReference(),
@@ -90,6 +101,9 @@ public class orderService {
                         products
                 )
         );
+
+        log.info("After Order Confirm sent to Kafka");
+
 
         return savedOrder.getId();
     }

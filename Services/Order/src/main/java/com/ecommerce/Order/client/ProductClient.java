@@ -11,7 +11,8 @@ import java.util.Optional;
 
 @FeignClient(
         // Application name of service to which we want to connect
-        name = "product-service"
+        name = "product-service",
+        path = "/api/v1/product"
 )
 public interface ProductClient {
 

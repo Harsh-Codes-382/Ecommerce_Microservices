@@ -15,6 +15,7 @@ public class orderMapper {
                 .reference(req.reference())
                 .paymentMethod(req.paymentMethod())
                 .totalAmount(total)
+                .customerId(req.customerId())
                 .build();
     }
 

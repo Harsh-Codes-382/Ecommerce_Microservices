@@ -18,7 +18,7 @@ public class Order {
 
     private final orderService orderService;
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity<Integer> createOrder(
         @RequestBody @Valid OrderRequest req
     ){

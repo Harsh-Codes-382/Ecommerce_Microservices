@@ -7,7 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 @FeignClient(
         // Application name of service to which we want to connect
-        name = "payment-service"
+        name = "payment-service",
+        path = "/api/v1/payment"
 )
 public interface PaymentClient {
 

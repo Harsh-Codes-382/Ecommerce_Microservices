@@ -14,7 +14,6 @@ public class productMapper {
         if(req == null) return null;
 
             return Product.builder()
-                    .id(req.id())
                     .price(req.price())
                     .name(req.name())
                     .availableQuantity(req.availableQuantity())

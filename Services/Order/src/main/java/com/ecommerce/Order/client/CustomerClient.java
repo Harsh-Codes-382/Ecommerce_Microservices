@@ -9,7 +9,8 @@ import java.util.Optional;
 
 @FeignClient(
         // Application name of service to which we want to connect
-        name = "customer-service"
+        name = "customer-service",
+        path = "/api/v1/customer"
 //        url = "${application.config.customer-url}"
 
 /*      This url is coming from application.yml & only needed
