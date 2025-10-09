@@ -109,6 +109,14 @@ services:
     networks:
       - microservice-net
 
+    # ---------------- zipkin ----------------
+  zipkin:
+    container_name: zipkin
+    image: openzipkin/zipkin
+    ports:
+      - 9412:9411
+    networks:
+      - microservice-net
 
 # ---------------- Networks & Volumes ----------------
 networks:

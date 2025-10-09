@@ -12,3 +12,17 @@ spring:
   cloud:
     config:
       override-system-properties: false
+
+
+#  So, All Services can have this Zipkin Configuration
+management:
+  zipkin:
+    tracing:
+      connect-timeout: 5s
+      read-timeout: 10s
+      endpoint: http://localhost:9412/api/v2/spans      # Zepkin URL
+
+  tracing:
+    sampling:
+      probability: 1.0      # DEV = Means all 100% request will be traced by zipkin
+      # probability: 0.1     # PROD = Means 50% request will be traced by zipkin so, it not slows down service but still lets us analyze the flow

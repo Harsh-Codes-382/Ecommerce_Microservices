@@ -9,8 +9,8 @@ import java.util.List;
 
 public record OrderConfirmationParams(
    String orderReference,
-   BigDecimal total,
+   BigDecimal totalAmount,
    PaymentMethod paymentMethod,
-   CustomerResponse customerResponse,
+   CustomerResponse customer,
     List<ProductPurchaseResponse> products
 ) {}
